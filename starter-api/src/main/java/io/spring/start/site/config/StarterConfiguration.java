@@ -29,6 +29,8 @@ public class StarterConfiguration {
       ObjectMapper objectMapper,
       InitializrConfiguration cfg,
       StarterConfig starterConfig) {
+
+    // FIXME: update SpringBootMetadataUrl before StartInitializrMetadataUpdateStrategy invoke
     cfg.getEnv().setSpringBootMetadataUrl(starterConfig.getSpringBootMetadataUrl().toString());
     return new StartInitializrMetadataUpdateStrategy(restTemplateBuilder.build(), objectMapper);
   }

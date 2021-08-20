@@ -1,7 +1,7 @@
 logging:
   level:
-    org.springframework.core.env: warn
-    org.springframework.jndi: warn
+    ROOT: WARN
+    org.springframework: DEBUG
     io.spring.start: DEBUG
 
 management:
