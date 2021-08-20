@@ -10,7 +10,6 @@ import io.spring.initializr.versionresolver.DependencyManagementVersionResolver;
 import io.spring.start.site.project.ProjectDescriptionCustomizerConfiguration;
 import io.spring.start.site.support.CacheableDependencyManagementVersionResolver;
 import io.spring.start.site.support.StartInitializrMetadataUpdateStrategy;
-import io.spring.start.site.web.HomeController;
 import java.io.IOException;
 import java.nio.file.Files;
 import org.springframework.boot.SpringApplication;
@@ -20,6 +19,8 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
@@ -36,11 +37,6 @@ public class StartApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(StartApplication.class, args);
-  }
-
-  @Bean
-  public HomeController homeController() {
-    return new HomeController();
   }
 
   @Bean
