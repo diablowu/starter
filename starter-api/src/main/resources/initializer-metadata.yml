@@ -1373,4 +1373,13 @@ initializr:
     - name: Java
       id: java
       default: true
-  bootVersions: []
+  bootVersions:
+    - name : 2.3.x
+      id: 2.3.12.RELEASE
+      default: true
+    - name : 2.4.x
+      id: 2.4.10.RELEASE
+      default: false
+    - name : 2.5.x
+      id: 2.5.4.RELEASE
+      default: false

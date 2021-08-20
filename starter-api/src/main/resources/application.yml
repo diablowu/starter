@@ -19,7 +19,7 @@ server:
 
 spring:
   config:
-    import: application-initializer.yml
+    import: initializer-metadata.yml
   jackson:
     serialization:
       write-dates-as-timestamps: false
@@ -30,4 +30,6 @@ spring:
     resources:
       cache:
         use-last-modified: false
-
+starter-config:
+  fetch-boot-version: true
+  spring-boot-metadata-url: https://spring.io/project_metadata/spring-boot

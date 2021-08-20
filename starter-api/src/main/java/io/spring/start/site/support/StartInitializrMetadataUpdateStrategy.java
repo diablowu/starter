@@ -35,20 +35,19 @@ public class StartInitializrMetadataUpdateStrategy extends SaganInitializrMetada
         ? versions.stream().filter(this::isCompatibleVersion).collect(Collectors.toList())
         : null;
   }
-  
+
   private boolean isCompatibleVersion(DefaultMetadataElement versionMetadata) {
     Version version = Version.parse(versionMetadata.getId());
     return version.getMajor() >= 2 // >= 2.x
         && version.getMinor() >= 3 // >= 2.3.x
         && isReleaseVersion(version.getQualifier()); // Not snapshot version
   }
-  
 
   private boolean isReleaseVersion(Qualifier qualifier) {
     if (qualifier == null) { // v2
       return true;
     } else {
-      return "RELEASE".equalsIgnoreCase(qualifier.getId()); //v1
+      return "RELEASE".equalsIgnoreCase(qualifier.getId()); // v1
     }
   }
 }

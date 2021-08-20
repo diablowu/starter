@@ -67,9 +67,9 @@
                     <version>2.12.2</version>
                     <executions>
                         <execution>
-                            <phase>compile</phase>
+                            <phase>validate</phase>
                             <goals>
-                                <goal>check</goal>
+                                <goal>apply</goal>
                             </goals>
                         </execution>
                     </executions>

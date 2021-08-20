@@ -5,22 +5,13 @@
  */
 package io.spring.start.site;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.spring.initializr.versionresolver.DependencyManagementVersionResolver;
+import io.spring.start.site.config.StarterConfiguration;
 import io.spring.start.site.project.ProjectDescriptionCustomizerConfiguration;
-import io.spring.start.site.support.CacheableDependencyManagementVersionResolver;
-import io.spring.start.site.support.StartInitializrMetadataUpdateStrategy;
-import java.io.IOException;
-import java.nio.file.Files;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
@@ -30,26 +21,12 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 @EnableAutoConfiguration
 @SpringBootConfiguration
-@Import(ProjectDescriptionCustomizerConfiguration.class)
+@Import({ProjectDescriptionCustomizerConfiguration.class, StarterConfiguration.class})
 @EnableCaching
 @EnableAsync
 public class StartApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(StartApplication.class, args);
-  }
-
-  @Bean
-  public StartInitializrMetadataUpdateStrategy initializrMetadataUpdateStrategy(
-      RestTemplateBuilder restTemplateBuilder, ObjectMapper objectMapper) {
-    return new StartInitializrMetadataUpdateStrategy(restTemplateBuilder.build(), objectMapper);
-  }
-
-  @Bean
-  public DependencyManagementVersionResolver dependencyManagementVersionResolver()
-      throws IOException {
-    return new CacheableDependencyManagementVersionResolver(
-        DependencyManagementVersionResolver.withCacheLocation(
-            Files.createTempDirectory("version-resolver-cache-")));
   }
 }
