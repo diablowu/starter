@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Spring Data.
- */
+/** Extensions for generation of projects that depend on Spring Data. */
 package io.spring.start.site.extension.dependency.springdata;

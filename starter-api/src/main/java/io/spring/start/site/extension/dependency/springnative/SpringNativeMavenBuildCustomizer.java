@@ -1,19 +1,8 @@
 /*
- * Copyright 2012-2021 the original author or authors.
+ * Copyright (c) 2012-2021 Taikang Pension. All rights reserved.
+ * Taikang Pension PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
-
 package io.spring.start.site.extension.dependency.springnative;
 
 import io.spring.initializr.generator.buildsystem.Dependency;
@@ -23,7 +12,6 @@ import io.spring.initializr.generator.buildsystem.maven.MavenProfile;
 import io.spring.initializr.generator.spring.build.BuildCustomizer;
 import io.spring.initializr.generator.version.VersionProperty;
 import io.spring.initializr.generator.version.VersionReference;
-
 import org.springframework.core.Ordered;
 
 /**
@@ -33,79 +21,120 @@ import org.springframework.core.Ordered;
  */
 class SpringNativeMavenBuildCustomizer implements BuildCustomizer<MavenBuild>, Ordered {
 
-	@Override
-	public void customize(MavenBuild build) {
-		Dependency dependency = build.dependencies().get("native");
-		String springNativeVersion = dependency.getVersion().getValue();
+  @Override
+  public void customize(MavenBuild build) {
+    Dependency dependency = build.dependencies().get("native");
+    String springNativeVersion = dependency.getVersion().getValue();
 
-		// Native build tools
-		String nativeBuildToolsVersion = SpringNativeBuildtoolsVersionResolver.resolve(springNativeVersion);
-		if (nativeBuildToolsVersion != null) {
-			build.properties().property("repackage.classifier", "");
-		}
+    // Native build tools
+    String nativeBuildToolsVersion =
+        SpringNativeBuildtoolsVersionResolver.resolve(springNativeVersion);
+    if (nativeBuildToolsVersion != null) {
+      build.properties().property("repackage.classifier", "");
+    }
 
-		// Expose a property
-		build.properties().version(VersionProperty.of("spring-native.version"), springNativeVersion);
+    // Expose a property
+    build.properties().version(VersionProperty.of("spring-native.version"), springNativeVersion);
 
-		// Update dependency to reuse the property
-		build.dependencies().add("native",
-				Dependency.from(dependency).version(VersionReference.ofProperty("spring-native.version")));
+    // Update dependency to reuse the property
+    build
+        .dependencies()
+        .add(
+            "native",
+            Dependency.from(dependency)
+                .version(VersionReference.ofProperty("spring-native.version")));
 
-		// AOT plugin
-		build.plugins().add("org.springframework.experimental", "spring-aot-maven-plugin",
-				(plugin) -> plugin.version("${spring-native.version}")
-						.execution("test-generate", (execution) -> execution.goal("test-generate"))
-						.execution("generate", (execution) -> execution.goal("generate")));
+    // AOT plugin
+    build
+        .plugins()
+        .add(
+            "org.springframework.experimental",
+            "spring-aot-maven-plugin",
+            (plugin) ->
+                plugin
+                    .version("${spring-native.version}")
+                    .execution("test-generate", (execution) -> execution.goal("test-generate"))
+                    .execution("generate", (execution) -> execution.goal("generate")));
 
-		// Spring Boot plugin
-		build.plugins().add("org.springframework.boot", "spring-boot-maven-plugin",
-				(plugin) -> plugin.configuration((configuration) -> {
-					if (nativeBuildToolsVersion != null) {
-						configuration.add("classifier", "${repackage.classifier}");
-					}
-					configuration.add("image", (image) -> {
-						image.add("builder", "paketobuildpacks/builder:tiny");
-						image.add("env", (env) -> env.add("BP_NATIVE_IMAGE", "true"));
-					});
-				}));
+    // Spring Boot plugin
+    build
+        .plugins()
+        .add(
+            "org.springframework.boot",
+            "spring-boot-maven-plugin",
+            (plugin) ->
+                plugin.configuration(
+                    (configuration) -> {
+                      if (nativeBuildToolsVersion != null) {
+                        configuration.add("classifier", "${repackage.classifier}");
+                      }
+                      configuration.add(
+                          "image",
+                          (image) -> {
+                            image.add("builder", "paketobuildpacks/builder:tiny");
+                            image.add("env", (env) -> env.add("BP_NATIVE_IMAGE", "true"));
+                          });
+                    }));
 
-		if (build.dependencies().has("data-jpa")) {
-			configureHibernateEnhancePlugin(build);
-		}
+    if (build.dependencies().has("data-jpa")) {
+      configureHibernateEnhancePlugin(build);
+    }
 
-		if (nativeBuildToolsVersion != null) {
-			configureNativeProfile(build, nativeBuildToolsVersion);
-		}
-	}
+    if (nativeBuildToolsVersion != null) {
+      configureNativeProfile(build, nativeBuildToolsVersion);
+    }
+  }
 
-	@Override
-	public int getOrder() {
-		return Ordered.LOWEST_PRECEDENCE - 10;
-	}
+  @Override
+  public int getOrder() {
+    return Ordered.LOWEST_PRECEDENCE - 10;
+  }
 
-	private void configureHibernateEnhancePlugin(MavenBuild build) {
-		build.plugins()
-				.add("org.hibernate.orm.tooling", "hibernate-enhance-maven-plugin",
-						(plugin) -> plugin.version("${hibernate.version}").execution("enhance",
-								(execution) -> execution.goal("enhance").configuration((configuration) -> configuration
-										.add("failOnError", "true").add("enableLazyInitialization", "true")
-										.add("enableDirtyTracking", "true").add("enableAssociationManagement", "true")
-										.add("enableExtendedEnhancement", "false"))));
-	}
+  private void configureHibernateEnhancePlugin(MavenBuild build) {
+    build
+        .plugins()
+        .add(
+            "org.hibernate.orm.tooling",
+            "hibernate-enhance-maven-plugin",
+            (plugin) ->
+                plugin
+                    .version("${hibernate.version}")
+                    .execution(
+                        "enhance",
+                        (execution) ->
+                            execution
+                                .goal("enhance")
+                                .configuration(
+                                    (configuration) ->
+                                        configuration
+                                            .add("failOnError", "true")
+                                            .add("enableLazyInitialization", "true")
+                                            .add("enableDirtyTracking", "true")
+                                            .add("enableAssociationManagement", "true")
+                                            .add("enableExtendedEnhancement", "false"))));
+  }
 
-	private void configureNativeProfile(MavenBuild build, String nativeBuildToolsVersion) {
-		MavenProfile profile = build.profiles().id("native");
-		profile.properties().version("native-buildtools.version", nativeBuildToolsVersion);
-		profile.properties().property("repackage.classifier", "exec");
-		profile.dependencies().add("junit-platform-native",
-				Dependency.withCoordinates("org.graalvm.buildtools", "junit-platform-native")
-						.version(VersionReference.ofProperty("native-buildtools.version"))
-						.scope(DependencyScope.TEST_RUNTIME));
-		profile.plugins().add("org.graalvm.buildtools", "native-maven-plugin", (plugin) -> {
-			plugin.version("${native-buildtools.version}");
-			plugin.execution("test-native", (execution) -> execution.goal("test").phase("test"));
-			plugin.execution("build-native", (execution) -> execution.goal("build").phase("package"));
-		});
-	}
-
+  private void configureNativeProfile(MavenBuild build, String nativeBuildToolsVersion) {
+    MavenProfile profile = build.profiles().id("native");
+    profile.properties().version("native-buildtools.version", nativeBuildToolsVersion);
+    profile.properties().property("repackage.classifier", "exec");
+    profile
+        .dependencies()
+        .add(
+            "junit-platform-native",
+            Dependency.withCoordinates("org.graalvm.buildtools", "junit-platform-native")
+                .version(VersionReference.ofProperty("native-buildtools.version"))
+                .scope(DependencyScope.TEST_RUNTIME));
+    profile
+        .plugins()
+        .add(
+            "org.graalvm.buildtools",
+            "native-maven-plugin",
+            (plugin) -> {
+              plugin.version("${native-buildtools.version}");
+              plugin.execution("test-native", (execution) -> execution.goal("test").phase("test"));
+              plugin.execution(
+                  "build-native", (execution) -> execution.goal("build").phase("package"));
+            });
+  }
 }

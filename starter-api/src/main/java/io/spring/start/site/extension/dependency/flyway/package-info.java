@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Flyway.
- */
+/** Extensions for generation of projects that depend on Flyway. */
 package io.spring.start.site.extension.dependency.flyway;

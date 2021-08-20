@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Spring Integration.
- */
+/** Extensions for generation of projects that depend on Spring Integration. */
 package io.spring.start.site.extension.dependency.springintegration;

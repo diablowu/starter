@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Spring REST Docs.
- */
+/** Extensions for generation of projects that depend on Spring REST Docs. */
 package io.spring.start.site.extension.dependency.springrestdocs;

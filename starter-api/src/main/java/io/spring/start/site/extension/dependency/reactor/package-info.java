@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Project Reactor.
- */
+/** Extensions for generation of projects that depend on Project Reactor. */
 package io.spring.start.site.extension.dependency.reactor;

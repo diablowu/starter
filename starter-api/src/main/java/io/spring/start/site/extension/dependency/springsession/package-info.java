@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Spring Session.
- */
+/** Extensions for generation of projects that depend on Spring Session. */
 package io.spring.start.site.extension.dependency.springsession;

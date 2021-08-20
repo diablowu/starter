@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Classes specific to running instance at start.spring.io.
- */
+/** Classes specific to running instance at start.spring.io. */
 package io.spring.start.site;

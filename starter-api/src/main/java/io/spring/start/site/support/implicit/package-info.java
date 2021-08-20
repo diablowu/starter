@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Support for implicit dependencies.
- */
+/** Support for implicit dependencies. */
 package io.spring.start.site.support.implicit;

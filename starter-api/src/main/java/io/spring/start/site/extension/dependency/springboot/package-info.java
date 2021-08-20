@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on specific features of Spring Boot.
- */
+/** Extensions for generation of projects that depend on specific features of Spring Boot. */
 package io.spring.start.site.extension.dependency.springboot;

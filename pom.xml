@@ -81,22 +81,7 @@
                     <artifactId>flatten-maven-plugin</artifactId>
                     <version>1.1.0</version>
                 </plugin>
-                <plugin>
-                    <groupId>io.spring.javaformat</groupId>
-                    <artifactId>spring-javaformat-maven-plugin</artifactId>
-                    <version>${spring-javaformat.version}</version>
-                    <executions>
-                        <execution>
-                            <phase>validate</phase>
-                            <configuration>
-                                <skip>${disable.checks}</skip>
-                            </configuration>
-                            <goals>
-                                <goal>validate</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
+                
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
@@ -110,9 +95,6 @@
                                 <configLocation>io/spring/javaformat/checkstyle/checkstyle.xml</configLocation>
                                 <includeTestSourceDirectory>true</includeTestSourceDirectory>
                             </configuration>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
                         </execution>
                     </executions>
                     <dependencies>
@@ -128,12 +110,15 @@
                         </dependency>
                     </dependencies>
                 </plugin>
+                
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>3.1.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
+        
+        
         <plugins>
             <plugin>
                 <groupId>com.diffplug.spotless</groupId>
@@ -158,7 +143,14 @@
                         </googleJavaFormat>
                         
                         <licenseHeader>
-                            <file>${basedir}/license-header.txt</file>
+                            <content>
+                                <![CDATA[/*
+ * Copyright (c) $today.year Taikang Pension. All rights reserved.
+ * Taikang Pension PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ *
+ */
+]]>
+                            </content>
                         </licenseHeader>
                     </java>
                 </configuration>

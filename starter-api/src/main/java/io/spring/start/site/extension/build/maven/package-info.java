@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Maven.
- */
+/** Extensions for generation of projects that depend on Maven. */
 package io.spring.start.site.extension.build.maven;

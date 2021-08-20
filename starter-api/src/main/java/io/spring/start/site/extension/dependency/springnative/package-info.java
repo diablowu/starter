@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Spring Native.
- */
+/** Extensions for generation of projects that depend on Spring Native. */
 package io.spring.start.site.extension.dependency.springnative;

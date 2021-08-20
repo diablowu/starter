@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for customization of the project description.
- */
+/** Extensions for customization of the project description. */
 package io.spring.start.site.extension.description;

@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Testcontainers.
- */
+/** Extensions for generation of projects that depend on Testcontainers. */
 package io.spring.start.site.extension.dependency.testcontainers;

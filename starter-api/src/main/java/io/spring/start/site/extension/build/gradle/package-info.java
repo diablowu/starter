@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Gradle.
- */
+/** Extensions for generation of projects that depend on Gradle. */
 package io.spring.start.site.extension.build.gradle;

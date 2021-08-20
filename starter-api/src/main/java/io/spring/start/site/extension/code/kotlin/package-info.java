@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that use the Kotlin language.
- */
+/** Extensions for generation of projects that use the Kotlin language. */
 package io.spring.start.site.extension.code.kotlin;

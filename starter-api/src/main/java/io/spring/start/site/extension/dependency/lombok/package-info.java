@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Lombok.
- */
+/** Extensions for generation of projects that depend on Lombok. */
 package io.spring.start.site.extension.dependency.lombok;

@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Liquibase.
- */
+/** Extensions for generation of projects that depend on Liquibase. */
 package io.spring.start.site.extension.dependency.liquibase;

@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Spring Security.
- */
+/** Extensions for generation of projects that depend on Spring Security. */
 package io.spring.start.site.extension.dependency.springsecurity;

@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Spring Cloud.
- */
+/** Extensions for generation of projects that depend on Spring Cloud. */
 package io.spring.start.site.extension.dependency.springcloud;

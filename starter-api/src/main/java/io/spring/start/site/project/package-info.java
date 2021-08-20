@@ -15,7 +15,7 @@
  */
 
 /**
- * {@link io.spring.initializr.generator.project.ProjectDescriptionCustomizer project
- * description customizers} specific to start.spring.io.
+ * {@link io.spring.initializr.generator.project.ProjectDescriptionCustomizer project description
+ * customizers} specific to start.spring.io.
  */
 package io.spring.start.site.project;

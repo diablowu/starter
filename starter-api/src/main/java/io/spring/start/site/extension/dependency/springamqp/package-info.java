@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Extensions for generation of projects that depend on Spring AMQP.
- */
+/** Extensions for generation of projects that depend on Spring AMQP. */
 package io.spring.start.site.extension.dependency.springamqp;

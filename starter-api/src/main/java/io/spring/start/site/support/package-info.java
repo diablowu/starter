@@ -14,7 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Support classes for start.spring.io.
- */
+/** Support classes for start.spring.io. */
 package io.spring.start.site.support;
