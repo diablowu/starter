@@ -143,13 +143,11 @@
                         </googleJavaFormat>
                         
                         <licenseHeader>
-                            <content>
-                                <![CDATA[/*
+                            <content>/*
  * Copyright (c) $today.year Taikang Pension. All rights reserved.
  * Taikang Pension PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  */
-]]>
                             </content>
                         </licenseHeader>
                     </java>
