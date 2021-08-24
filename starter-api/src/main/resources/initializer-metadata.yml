@@ -66,7 +66,7 @@ initializr:
         groupId: io.pivotal.spring.cloud
         artifactId: spring-cloud-services-dependencies
         versionProperty: spring-cloud-services.version
-        additionalBoms: [spring-cloud]
+        additionalBoms: [ spring-cloud ]
         mappings:
           - compatibilityRange: "[2.3.0.RELEASE,2.4.0-M1)"
             version: 2.3.0.RELEASE
@@ -129,6 +129,11 @@ initializr:
         releasesEnabled: false
         snapshotsEnabled: true
   dependencies:
+    - name: Taikang Pension DevOps
+      content:
+        - name: JIB Build
+          id: jib-build
+          description: This is not a real maven dependency, but is used to mark features
     - name: Developer Tools
       content:
         - name: Spring Native [Experimental]
@@ -1374,12 +1379,12 @@ initializr:
       id: java
       default: true
   bootVersions:
-    - name : 2.3.x
+    - name: 2.3.x
       id: 2.3.12.RELEASE
       default: true
-    - name : 2.4.x
+    - name: 2.4.x
       id: 2.4.10.RELEASE
       default: false
-    - name : 2.5.x
+    - name: 2.5.x
       id: 2.5.4.RELEASE
       default: false

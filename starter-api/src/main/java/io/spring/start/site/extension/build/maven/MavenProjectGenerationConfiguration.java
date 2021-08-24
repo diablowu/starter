@@ -33,9 +33,4 @@ class MavenProjectGenerationConfiguration {
     return new AnnotationProcessorExclusionBuildCustomizer(
         metadata, description.getPlatformVersion());
   }
-
-  @Bean
-  GoogleJavaFormatterPluginBuildCustomizer googleJavaFormatterPluginBuildCustomizer() {
-    return new GoogleJavaFormatterPluginBuildCustomizer();
-  }
 }

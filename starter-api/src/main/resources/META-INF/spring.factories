@@ -15,4 +15,5 @@ io.spring.start.site.extension.dependency.testcontainers.TestcontainersProjectGe
 io.spring.start.site.extension.dependency.vaadin.VaadinProjectGenerationConfiguration,\
 io.spring.start.site.extension.description.DescriptionProjectGenerationConfiguration,\
 io.spring.start.site.extension.code.groovy.GroovyProjectGenerationConfiguration,\
-io.spring.start.site.extension.code.kotlin.KotlinProjectGenerationConfiguration
+io.spring.start.site.extension.code.kotlin.KotlinProjectGenerationConfiguration,\
+io.spring.start.site.extension.starter.StarterProjectGenerationConfiguration
