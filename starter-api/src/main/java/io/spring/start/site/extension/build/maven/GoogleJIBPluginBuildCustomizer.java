@@ -1,5 +1,11 @@
+/*
+ * Copyright (c) 2021 Taikang Pension. All rights reserved.
+ * Taikang Pension PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ *
+ */
 package io.spring.start.site.extension.build.maven;
 
+import io.spring.initializr.generator.buildsystem.maven.CDATA;
 import io.spring.initializr.generator.buildsystem.maven.MavenBuild;
 import io.spring.initializr.generator.buildsystem.maven.MavenPlugin.ConfigurationBuilder;
 import io.spring.initializr.generator.spring.build.BuildCustomizer;
@@ -16,13 +22,13 @@ public class GoogleJIBPluginBuildCustomizer implements BuildCustomizer<MavenBuil
         .profiles()
         .id("jib-build")
         .properties()
-        .property("maven.build.timestamp.format", "yyyy-MM-dd'T'HH:mm:ss'Z'");
-    profile.properties().property("main.class", "${maven.build.timestamp}");
+        .property("maven.build.timestamp.format", CDATA.wrap("yyyy-MM-dd'T'HH:mm:ss'Z'"));
+    profile.properties().property("main.class", "");
     profile
         .properties()
         .property("image.base", "registry.taikangcloud.com/tkp/base/jib-java-base:11");
     profile.properties().property("image.registry", "registry.taikangcloud.com");
-    profile.properties().property("image.ns", "/");
+    profile.properties().property("image.ns", "/path/to/your/namespace");
     profile.properties().property("image.tag", "dev");
     profile.properties().property("allowInsecureRegistries", "true");
 

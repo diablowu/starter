@@ -5,17 +5,19 @@
  */
 package io.spring.start.site.extension.build.maven;
 
+import io.spring.initializr.generator.buildsystem.maven.CDATA;
 import io.spring.initializr.generator.buildsystem.maven.MavenBuild;
 import io.spring.initializr.generator.spring.build.BuildCustomizer;
 
 public class GoogleJavaFormatterPluginBuildCustomizer implements BuildCustomizer<MavenBuild> {
 
   private static final String JAVA_SOURCE_HEADER =
-      "/*\n"
-          + " * Copyright (c) $today.year Taikang Pension. All rights reserved.\n"
-          + " * Taikang Pension PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.\n"
-          + " *\n"
-          + " */";
+      CDATA.wrap(
+          "<![CDATA[/*\n"
+              + " * Copyright (c) $today.year Taikang Pension. All rights reserved.\n"
+              + " * Taikang Pension PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.\n"
+              + " *\n"
+              + " */]]>");
 
   @Override
   public void customize(MavenBuild build) {
